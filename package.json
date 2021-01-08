@@ -1,0 +1,23 @@
+{
+  "name": "proshop",
+  "version": "1.0.0",
+  "description": "Fullstack web store build with MERN stack.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon backend/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrii-matviichuk/mern-online-store.git"
+  },
+  "author": "Andrii Matviichuk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrii-matviichuk/mern-online-store/issues"
+  },
+  "homepage": "https://github.com/andrii-matviichuk/mern-online-store#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
