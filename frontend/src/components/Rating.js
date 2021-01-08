@@ -4,7 +4,7 @@ function Rating({ value, text, color }) {
   return (
     <div className="rating">
       {[1, 2, 3, 4, 5].map((el) => (
-        <span>
+        <span key={el}>
           <i
             style={{ color: color }}
             className={

@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "Fullstack web store build with MERN stack.",
   "main": "server.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon backend/server"
+    "start": "node backend/server",
+    "server": "nodemon backend/server",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -18,6 +21,14 @@
   },
   "homepage": "https://github.com/andrii-matviichuk/mern-online-store#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "bcrypt": "^5.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.10"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.7"
   }
 }
