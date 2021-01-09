@@ -1,9 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import bcrypt from 'bcrypt';
-import products from './data/products.js';
-import User from './models/userModel.js';
+import app from './app.js';
 
 process.on('uncaughtException', (err) => {
   console.log('Uncaught exception. Shutting down...');
@@ -31,19 +29,7 @@ try {
   process.exit(1);
 }
 
-const app = express();
-
-app.get('/api/products', (req, res) => {
-  res.json(products);
-});
-
-app.get('/api/products/:id', (req, res) => {
-  const product = products.find((prod) => prod._id === req.params.id);
-  res.json(product);
-});
-
 const port = process.env.PORT || 5000;
-
 app.listen(
   port,
   console.log(`App is running in ${process.env.NODE_ENV} mode on port ${port}`)
