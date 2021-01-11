@@ -21,13 +21,30 @@ const userSchema = new mongoose.Schema(
       required: [true, 'User must have an admin property'],
       default: false,
     },
+    passwordChangedAt: Date,
   },
   { timestamps: true }
 );
 
+userSchema.methods.isCorrectPassword = async function (candidatePassword) {
+  return await bcrypt.compare(candidatePassword, this.password);
+};
+
+userSchema.methods.isPasswordChangedAfter = function (JWTTimestamp) {
+  if (this.passwordChangedAt) {
+    const changedTimeStamp = parseInt(
+      this.passwordChangedAt.getTime() / 1000,
+      10
+    );
+    return changedTimeStamp > JWTTimestamp;
+  }
+  return false;
+};
+
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next();
-  this.password = bcrypt.hash(this.password, 12);
+  this.password = await bcrypt.hash(this.password, 12);
+  this.passwordChangedAt = Date.now() - 1000;
   next();
 });
 
